@@ -4,12 +4,13 @@ import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
 
 @Injectable({providedIn: 'root'})
-export class AuthGuard implements CanActivate , CanActivateChild {
+export class AuthGuard implements CanActivate, CanActivateChild {
 
     constructor(
         private authService: AuthService,
         private router: Router,
-    ) {}
+    ) {
+    }
 
     canActivate(
         route: ActivatedRouteSnapshot,
@@ -22,16 +23,17 @@ export class AuthGuard implements CanActivate , CanActivateChild {
             } else {
                 this.router.navigate(['/'], {
                     queryParams: {
-                    auth: false
-                }
+                        auth: false
+                    }
                 });
             }
         });
     }
+
     canActivateChild(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
-    ): Observable<boolean> | Promise<boolean> | boolean  {
-       return this.canActivate(route, state)
+    ): Observable<boolean> | Promise<boolean> | boolean {
+        return this.canActivate(route, state);
     }
 }
