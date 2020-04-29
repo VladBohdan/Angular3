@@ -5,17 +5,18 @@ export class AuthService {
     private isAuth = false;
 
     login() {
-    this.isAuth =  true
-    }
-    logout() {
-     this.isAuth = false
+        this.isAuth = true;
     }
 
-    isAuthenticated(): Promise<boolean>  {
+    logout() {
+        this.isAuth = false;
+    }
+
+    isAuthenticated(): Promise<boolean> {
         return new Promise(resolve => {
             setTimeout(() => {
-                resolve(this.isAuth)
-            }, 1000)
-        })
+                resolve(this.isAuth);
+            }, 1000);
+        });
     }
 }
