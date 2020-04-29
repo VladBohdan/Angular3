@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core'
+import {Injectable} from '@angular/core';
 
 export interface Post {
-  title: string
-  text: string
-  id: number
+  title: string;
+  text: string;
+  id: number;
 }
 
 @Injectable({providedIn: 'root'})
