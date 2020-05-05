@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {animate, group, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'app-root',
@@ -26,7 +26,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
                 })),
                 animate(750)
             ]),
-            //void =>*
+            // void =>*
             transition(':enter', [
                 style({opacity: 0}),
                 animate('850ms ease-out')
@@ -34,10 +34,16 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
             // * => void
             transition(':leave', [
                 style({opacity: 1}),
-                animate(750, style({
-                    opacity: 0,
-                    transform: 'scale(1.2)'
-                })),
+                group([
+                    animate(750, style({
+                        opacity: 0,
+                        transform: 'scale(1.2)'
+                    })),
+                    animate(300, style({
+                        color: '#000',
+                        fontWeight: 'bold'
+                    })),
+                ]),
             ]),
         ])
     ]
@@ -45,6 +51,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class AppComponent {
     boxState = 'start';
     visible = true;
+
     animate() {
         this.boxState = this.boxState === 'end' ? 'start' : 'end';
     }
